@@ -32,6 +32,7 @@ Open http://localhost:8200/api/doc in your browser.
 - Run `phpcs --fix` to ensure clean code.
 - Introduce versioning (e.g., v1, v2, v3).
 - Integrate OpenAPI on the frontend to streamline backend service usage.
+- add production environment and deploy it by using CI/CD
 
 #### Note for production:
 - the generate mercure keys (in .env) could be generated using Symfony command
