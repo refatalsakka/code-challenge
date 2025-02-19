@@ -26,7 +26,7 @@ Open http://localhost:8200/api/doc in your browser.
 - For better performance, create a DailyStats table that stores precomputed counts of events per day. This will reduce the load on the Event table, especially when handling large numbers of events (e.g., 100K+ per day).
 - Add repository method to retrieve all events at once.
 - Define consistent frontend error codes.
-- Complete unit tests (current tests require more teset database setup, it was just o show it as example)
+- Complete unit tests (current tests require new test database setup, it was just added to show it as example)
 - Implement git hooks.
 - Apply PHP PSR-12 standards.
 - Run `phpcs --fix` to ensure clean code.
