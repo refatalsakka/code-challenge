@@ -26,7 +26,7 @@ Open http://localhost:8200/api/doc in your browser.
 - For better performance, create a DailyStats table that stores precomputed counts of events per day. This will reduce the load on the Event table, especially when handling large numbers of events (e.g., 100K+ per day).
 - Add repository method to retrieve all events at once.
 - Define consistent frontend error codes.
-- Complete unit tests (current tests require more teset database setup, it was just to show)
+- Complete unit tests (current tests require more teset database setup, it was just o show it as example)
 - Implement git hooks.
 - Apply PHP PSR-12 standards.
 - Run `phpcs --fix` to ensure clean code.
@@ -34,5 +34,6 @@ Open http://localhost:8200/api/doc in your browser.
 - Integrate OpenAPI on the frontend to streamline backend service usage.
 - add production environment and deploy it by using CI/CD
 
-#### Note for production:
-- the generate mercure keys (in .env) could be generated using Symfony command
+#### Note
+- the generate mercure keys (in .env) could be generated using Symfony command in the production for example
+- i did use the poll request rather than real time, but i did implement it to show it as example
