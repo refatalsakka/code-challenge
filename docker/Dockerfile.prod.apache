@@ -1,0 +1,41 @@
+FROM php:8.2-apache-bullseye
+
+# Install required packages
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    zip \
+    libicu-dev \
+    default-mysql-client \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install pdo pdo_mysql intl
+
+# Set the working directory
+WORKDIR /var/www/html
+
+# Enable Apache modules
+RUN a2enmod rewrite
+
+# Install PHP_CodeSniffer
+RUN pear install PHP_CodeSniffer
+
+# Copy Apache configuration
+COPY docker/apache/httpd.conf /etc/apache2/sites-enabled/000-default.conf
+
+# Install Composer globally
+RUN curl -Ss https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Copy Composer files first to leverage Docker layer caching
+COPY composer.json composer.lock ./
+
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
+# Install Composer dependencies without scripts
+RUN composer install --no-scripts
+
+# Ensure necessary directories exist inside /var
+RUN mkdir -p /var/www/html/var/cache /var/www/html/var/log && \
+    chmod -R 777 /var/www/html/var
+
+# Copy the rest of the application files
+COPY . /var/www/html
