@@ -4,10 +4,6 @@ APACHE_CONTAINER=apache
 build-dev:
 	docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build -d
 
-.PHONY: build-prod
-build-prod:
-	docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d
-
 .PHONY: stop
 stop:
 	docker compose stop
@@ -48,10 +44,6 @@ diff:
 .PHONY: migrate
 migrate:
 	docker compose exec $(APACHE_CONTAINER) php bin/console doctrine:migrations:migrate
-
-.PHONY: load-fixtures-prod
-load-fixtures-prod:
-	docker compose exec $(APACHE_CONTAINER) php bin/console doctrine:fixtures:load --group=prod
 
 .PHONY: load-fixtures-dev
 load-fixtures-dev:

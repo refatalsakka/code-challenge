@@ -1,8 +1,0 @@
-services:
-  apache:
-    build:
-      dockerfile: docker/Dockerfile.prod.apache
-  phpmyadmin:
-    environment:
-      PMA_USER: ${MARIADB_USER}
-      PMA_PASSWORD: ${MARIADB_ROOT_PASSWORD}
